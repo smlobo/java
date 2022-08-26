@@ -8,7 +8,7 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.aternity.java.SpringBootMySqlBookList</groupId>
+	<groupId>org.lobo.java.SpringBootMySqlBookList</groupId>
 	<artifactId>SpringBootMySqlBookList</artifactId>
 	<version>1.0</version>
 	<name>SpringBootMySqlBookList</name>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Random Set of Movies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style="background-color:darkkhaki;">
+    <h1>Table of <strong th:text="${count}"/> movies</h1>
+    <table>
+        <thead>
+        <tr>
+            <th> Title </th>
+            <th> Release Date </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${movies.empty}">
+            <td colspan="2"> No Movies Available </td>
+        </tr>
+        <tr th:each="movie : ${movies}">
+            <td><span th:text="${movie.name}"></span></td>
+            <td><span th:text="${movie.release}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

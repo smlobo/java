@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Reactive Random Countries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style="background-color:mediumpurple;">
+    <h1>Reactive table of <strong th:text="${count}"/> countries</h1>
+    <table>
+        <thead>
+        <tr>
+            <th> Name </th>
+            <th> Currency </th>
+            <th> Region </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${countries.empty}">
+            <td colspan="3"> No Countries Available </td>
+        </tr>
+        <tr th:each="country : ${countries}">
+            <td><span th:text="${country.name}"></span></td>
+            <td><span th:text="${country.currency}"></span></td>
+            <td><span th:text="${country.region}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

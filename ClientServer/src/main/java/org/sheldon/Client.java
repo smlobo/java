@@ -1,11 +1,11 @@
 package org.sheldon;
 
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 public class Client {
     private static void makeRequest(String restEndpoint) throws Exception {
@@ -16,7 +16,13 @@ public class Client {
         HttpClient client = HttpClient.newBuilder()
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Got: " + response.statusCode() + " : " + response.body());
+
+        // Headers
+        HttpHeaders headers = response.headers();
+        Optional<String> server = headers.firstValue("Server");
+
+        System.out.println("Got: " + response.statusCode() + " {" + server.orElse("no-server") + "} : " +
+                response.body());
         Thread.sleep(2000);
     }
 

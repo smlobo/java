@@ -1,5 +1,6 @@
 package org.sheldon;
 
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -17,7 +18,18 @@ public class Server {
                 exchange.sendResponseHeaders(400, -1);
                 return;
             }
-            System.out.println("Received request to " + this.getClass() + " -> " + exchange.getRemoteAddress());
+
+            // Request headers
+            Headers headers = exchange.getRequestHeaders();
+            String userAgent = headers.getFirst("User-Agent");
+
+            System.out.println("Received request to " + this.getClass() + " -> " + exchange.getRemoteAddress() +
+                    " {" + userAgent + "}");
+
+            // Response headers
+            Headers responseHeaders = exchange.getResponseHeaders();
+            responseHeaders.add("Server", "Java " + Runtime.version());
+
             exchange.sendResponseHeaders(200, getCountry().getBytes().length);
             exchange.getResponseBody().write(getCountry().getBytes());
             exchange.close();

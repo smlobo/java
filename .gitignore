@@ -32,4 +32,7 @@ target/
 # Gradle
 build/
 .gradle/
+gradle/
+gradlew
+gradlew.bat
 
